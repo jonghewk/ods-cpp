@@ -22,17 +22,29 @@ public:
 	}
 	
 	void resize() {
-		Array<T> b(max(1, 2 * n_));
-    std::copy(arr_, arr_ + n_, b);
+		Array<T> b(std::max(1, 2 * n_));
+    std::copy(arr_.begin(), arr_.begin() + n_, b.begin());
 		arr_ = b;
   }
-
+	
+	// Exercise 2.1
+	void add_all(int i, const Array<T>& c) {
+		if (n_ + c.length_ > arr_.length_) {
+			// resize
+			Array<T> b(std::max(1, 2 * (n_ + c.length_)));
+    	std::copy(arr_.begin(), arr_.begin() + n_, b.begin());
+			arr_ = b;	
+		}
+		std::copy_backward(arr_.begin() + i, arr_.begin() + n_, arr_.begin() + n_ + c.length_);
+		std::copy(&c[0], &c[0] + c.length_, arr_.begin() + i);
+		n_ = n_ + c.length_;
+	}
 
 	void add(int i, T x) {
 		if (n_ + 1 > arr_.length_) {
 			resize();
 		}
-		std::copy_backward(arr_ + i, arr_ + n_, arr_ + n_ + 1);
+		std::copy_backward(arr_.begin() + i, arr_.begin() + n_, arr_.begin() + n_ + 1);
 		arr_[i] = x;
 		n_++;
 	}
@@ -55,7 +67,7 @@ public:
 
 protected:
 	// actually number of elements
-	int n_;
+	int n_ = 0;
 	Array<T> arr_;
 };
 
