@@ -86,8 +86,9 @@ public:
     return y;
   }
 
+
   void resize() {
-    Array<T> b(max(1, 2 * n_));
+    Array<T> b(std::max(1, 2 * n_));
     for (int k = 0; k < n_; k++) {
       b[k] = arr_[(j_ + k) % arr_.length_];
     }
@@ -109,13 +110,14 @@ public:
       for (int k = n_; k > i; k--) {
         arr_[(j_ + k) % arr_.length_] = arr_[(j_ + k - 1) % arr_.length_];
       }
-      arr_[(j_ + i) % arr_.length_] = x;
     }
+    arr_[(j_ + i) % arr_.length_] = x;
+    n_++;
   }
 
   T remove(int i) {
     T x = arr_[(j_ + i) % arr_.length_];
-    if (i < n_ / 2) {
+    if (i <= n_ / 2) {
       for (int k = i; k > 0; k--) {
         arr_[(j_ + k) % arr_.length_] = arr_[(j_ + k - 1) % arr_.length_];
       }
@@ -135,10 +137,14 @@ public:
 
   int size() { return n_; }
 
-  int j_;
+  int j_ = 0;
   // actually number of elements
-  int n_;
+  int n_ = 0;
   Array<T> arr_;
+
+private:
+	
+
 };
 
 } // namespace ods

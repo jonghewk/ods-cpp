@@ -1,4 +1,5 @@
 
+#include "array_lists/array_deque.h"
 #include <iostream>
 #include <array_lists/array.h>
 #include <array_lists/array_stack.h>
@@ -94,11 +95,24 @@ void Exercise_2_4() {
 	}
 }
 
+void Exercise_2_6() {
+	ods::ArrayDeque<int> deque(1);
+	deque.add(0, 1);
+	deque.add(0, 2);
+	deque.add(0, 3);
+	deque.add(0, 4);
+
+	for (int i = 0; i < deque.size(); i++) {
+		std::cout << "i : " << deque.get(i) << "\n";
+	}
+}
+
 
 int main() {
 	// Exercise_2_1();
 	// Exercise_2_2();
 	// Exercise_2_3();
-	Exercise_2_4();
+	// Exercise_2_4();
+	Exercise_2_6();
 	return 0;
 }
