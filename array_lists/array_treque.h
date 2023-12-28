@@ -3,8 +3,7 @@
 
 namespace ods {
 
-template <typename T>
-class ArrayTreque {
+template <typename T> class ArrayTreque {
 public:
   T get(int i) {
     if (i < left_.size()) {
@@ -23,14 +22,14 @@ public:
   }
 
   void balance() {
-		if (left_.size() - right_.size() == 2) {
-			auto tmp = left_.remove(left_.size() - 1);
-			right_.add(0, tmp);
-		}
-		if (right_.size() - left_.size() == 2) {
-			auto tmp = right_.remove(0);
-			left_.add(left_.size(), tmp);
-		}
+    if (left_.size() - right_.size() == 2) {
+      auto tmp = left_.remove(left_.size() - 1);
+      right_.add(0, tmp);
+    }
+    if (right_.size() - left_.size() == 2) {
+      auto tmp = right_.remove(0);
+      left_.add(left_.size(), tmp);
+    }
   }
 
   void add(int i, T x) {
@@ -58,6 +57,5 @@ public:
   DualArrayDeque<T> left_;
   DualArrayDeque<T> right_;
 };
-
 
 } // namespace ods

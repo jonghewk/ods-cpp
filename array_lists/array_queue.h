@@ -9,7 +9,7 @@ namespace ods {
 template <typename T> class ArrayQueue {
 public:
   ArrayQueue(int n) : arr_(n) {}
-	~ArrayQueue() {}
+  ~ArrayQueue() {}
 
   void resize() {
     Array<T> b(std::max(1, 2 * n_));
@@ -20,14 +20,12 @@ public:
     j_ = 0;
   }
 
-	T front() {
-		return arr_[j_];
-	}
+  T front() { return arr_[j_]; }
 
-	T back() {
-		assert(n_ > 0);
-		return arr_[(j_ + n_ - 1) % arr_.length_];
-	}
+  T back() {
+    assert(n_ > 0);
+    return arr_[(j_ + n_ - 1) % arr_.length_];
+  }
 
   bool add(T x) {
     if (n_ + 1 > arr_.length_) {
@@ -49,18 +47,18 @@ public:
   }
 
   int size() { return n_; }
+
 protected:
-	int j_ = 0;
+  int j_ = 0;
   // actually number of elements
   int n_ = 0;
   Array<T> arr_;
 };
 
-
 template <typename T> class RandomQueue {
 public:
   RandomQueue(int n) : arr_(n) {}
-	~RandomQueue() {}
+  ~RandomQueue() {}
 
   void resize() {
     Array<T> b(std::max(1, 2 * n_));
@@ -69,7 +67,6 @@ public:
     }
     arr_ = b;
   }
-
 
   bool add(T x) {
     if (n_ + 1 > arr_.length_) {
@@ -81,7 +78,7 @@ public:
   }
 
   T remove() {
-		assert(n_ > 0);
+    assert(n_ > 0);
     int rand = std::rand() % n_;
     T x = arr_[rand];
     arr_[rand] = arr_[n_ - 1];
@@ -93,11 +90,11 @@ public:
   }
 
   int size() { return n_; }
+
 protected:
   // actually number of elements
   int n_ = 0;
   Array<T> arr_;
 };
-
 
 } // namespace ods

@@ -1,20 +1,20 @@
 #pragma once
 
-#include <iostream>
 #include <cassert>
+#include <iostream>
 
 namespace ods {
 // Simple array
 template <typename T> class Array {
 public:
-  typedef T* iterator;
-  typedef const T* const_iterator;
+  typedef T *iterator;
+  typedef const T *const_iterator;
   iterator begin() { return &a_[0]; }
   iterator end() { return &a_[length_]; }
 
   const_iterator cbegin() { return &a_[0]; }
   const_iterator cend() { return &a_[length_]; }
-  
+
   explicit Array(int len) : length_(len), a_(new T[len]) {}
   ~Array() {
     if (a_ != nullptr) {
@@ -69,8 +69,6 @@ public:
     assert(i >= 0 && i < length_);
     return a_[i];
   }
-
-
 
   T *a_;
   int length_;

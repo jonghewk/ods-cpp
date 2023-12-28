@@ -7,71 +7,69 @@
 namespace ods {
 template <typename T> class DualArrayDeque {
 public:
-
   T get(int i) {
-		if (i < front_.size()) {
-			return front_.get(front_.size() - i  - 1);
-		} else {
-			return back_.get(i - front_.size());
-		 }
-	}
+    if (i < front_.size()) {
+      return front_.get(front_.size() - i - 1);
+    } else {
+      return back_.get(i - front_.size());
+    }
+  }
 
-	T set(int i, T x) {
-		if (i < front_.size()) {
-			return front_.set(front_.size() - i - 1, x);
-		} else {
-			return back_.set(i - front_.size(), x);
-		}
-	}
+  T set(int i, T x) {
+    if (i < front_.size()) {
+      return front_.set(front_.size() - i - 1, x);
+    } else {
+      return back_.set(i - front_.size(), x);
+    }
+  }
 
-	void balance() {
-		if (!(3 * front_.size() < back_.size() || 3 * back_.size() < front_.size())) {
-			return;
-		}
-		int n = front_.size() + back_.size();
-		int nf = n / 2;
-		
-		Array<T> af(std::max(2 * nf, 1));
-		for (int i = 0; i < nf; i++) {
-			af[nf - i - 1] = get(i);
-		}
-		int nb = n - nf;
-		Array<T> ab(std::max(2 * nb, 1));
-		for (int i = 0; i < nb; i++) {
-			ab[i] = get(nf + i);
-		}
-		front_.arr_ = af;
-		front_.n_ = nf;
-		back_.arr_ = ab;
-		back_.n_ = nb;
-	}
+  void balance() {
+    if (!(3 * front_.size() < back_.size() ||
+          3 * back_.size() < front_.size())) {
+      return;
+    }
+    int n = front_.size() + back_.size();
+    int nf = n / 2;
 
-	void add(int i, T x) {
-		if (i < front_.size()) {
-			front_.add(front_.size() - i, x);
-		} else {
-			back_.add(i - front_.size(), x);
-		}
-		balance();
-	}
+    Array<T> af(std::max(2 * nf, 1));
+    for (int i = 0; i < nf; i++) {
+      af[nf - i - 1] = get(i);
+    }
+    int nb = n - nf;
+    Array<T> ab(std::max(2 * nb, 1));
+    for (int i = 0; i < nb; i++) {
+      ab[i] = get(nf + i);
+    }
+    front_.arr_ = af;
+    front_.n_ = nf;
+    back_.arr_ = ab;
+    back_.n_ = nb;
+  }
 
-	T remove(int i) {
-		T x;
-		if (i < front_.size()) {
-			x = front_.remove(front_.size() - i - 1);
-		} else {
-			x = back_.remove(i - front_.size());
-		}
-		balance();
-		return x;
-	}
+  void add(int i, T x) {
+    if (i < front_.size()) {
+      front_.add(front_.size() - i, x);
+    } else {
+      back_.add(i - front_.size(), x);
+    }
+    balance();
+  }
 
-	int size() {
-		return front_.size() + back_.size();
-	}
+  T remove(int i) {
+    T x;
+    if (i < front_.size()) {
+      x = front_.remove(front_.size() - i - 1);
+    } else {
+      x = back_.remove(i - front_.size());
+    }
+    balance();
+    return x;
+  }
 
-	ArrayStack<T> back_;
-	ArrayStack<T> front_;	
+  int size() { return front_.size() + back_.size(); }
+
+  ArrayStack<T> back_;
+  ArrayStack<T> front_;
 };
 
 template <typename T> class ArrayDeque {
@@ -85,7 +83,6 @@ public:
     arr_[(j_ + i) % arr_.length_] = x;
     return y;
   }
-
 
   void resize() {
     Array<T> b(std::max(1, 2 * n_));
@@ -143,8 +140,6 @@ public:
   Array<T> arr_;
 
 private:
-	
-
 };
 
 } // namespace ods
