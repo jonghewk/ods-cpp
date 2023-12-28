@@ -3,6 +3,8 @@
 #include <array_lists/array.h>
 #include <array_lists/array_stack.h>
 #include <array_lists/array_queue.h>
+#include <array_lists/array_treque.h>
+#include <array_lists/rotate.h>
 
 void Exercise_2_1() {
 	ods::ArrayStack<int> stack(2);
@@ -62,9 +64,41 @@ void Exercise_2_2() {
 	}
 }
 
+void Exercise_2_3() {
+	ods::ArrayTreque<int> treque;
+	treque.add(0, 1);
+	treque.add(0, 2);
+  treque.add(0, 3);
+  treque.add(1, 4);
+  treque.add(2, -1);
+
+  for (int i = 0; i < treque.size(); i++) {
+		std::cout << "i : " << treque.get(i) << "\n";
+	}
+}
+
+void Exercise_2_4() {
+	ods::Array<int> c(5);
+	for (int i = 0; i < 5; i++) {
+		c[i] = i + 1;
+	}
+	ods::Array<int> out(5);
+	rotate(c, out, 3);
+	for (int i = 0; i < 5; i++) {
+		std::cout << "i : " << out[i] << "\n";
+	}
+	std::cout << "-------" << "\n";
+	ods::rotate_in_place(c, 3);
+	for (int i = 0; i < 5; i++) {
+		std::cout << "i : " << c[i] << "\n";
+	}
+}
+
 
 int main() {
 	// Exercise_2_1();
-	Exercise_2_2();
+	// Exercise_2_2();
+	// Exercise_2_3();
+	Exercise_2_4();
 	return 0;
 }

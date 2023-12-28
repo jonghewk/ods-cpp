@@ -25,7 +25,7 @@ public:
 	}
 
 	void balance() {
-		if (!(3 * front_.size() < back_.size() || 3 * back_.szie() < front_.size())) {
+		if (!(3 * front_.size() < back_.size() || 3 * back_.size() < front_.size())) {
 			return;
 		}
 		int n = front_.size() + back_.size();
@@ -55,7 +55,7 @@ public:
 		balance();
 	}
 
-	void remove(int i) {
+	T remove(int i) {
 		T x;
 		if (i < front_.size()) {
 			x = front_.remove(front_.size() - i - 1);
@@ -70,8 +70,6 @@ public:
 		return front_.size() + back_.size();
 	}
 
-
-protected:
 	ArrayStack<T> back_;
 	ArrayStack<T> front_;	
 };
@@ -137,7 +135,6 @@ public:
 
   int size() { return n_; }
 
-protected:
   int j_;
   // actually number of elements
   int n_;

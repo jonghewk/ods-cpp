@@ -8,6 +8,10 @@ namespace ods {
 template <typename T>
 class ArrayStack {
 public:
+	ArrayStack() : arr_(1) {
+
+	}
+
 	ArrayStack(int n) : arr_(n) {
 	}
 
@@ -56,16 +60,16 @@ public:
       arr_[j] = arr_[j + 1];
     }
 		n_--;
-		if (this->a_.length_ >= 3 * n_) {
+		if (this->arr_.length_ >= 3 * this->n_) {
 			resize();
 		}
+		return x;
 	}
 
 	int size() {
 		return n_;
 	}
 
-protected:
 	// actually number of elements
 	int n_ = 0;
 	Array<T> arr_;

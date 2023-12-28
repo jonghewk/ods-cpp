@@ -14,7 +14,7 @@ public:
 
   const_iterator cbegin() { return &a_[0]; }
   const_iterator cend() { return &a_[length_]; }
-
+  
   explicit Array(int len) : length_(len), a_(new T[len]) {}
   ~Array() {
     if (a_ != nullptr) {
